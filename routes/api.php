@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers as Controllers;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,6 +20,19 @@ Route::get('/ping', function () {
     return ['pong'=>true];
 });
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/auth/login', [Controllers\AuthController::class, 'login']);
+Route::post('/auth/logout', [Controllers\AuthController::class, 'logout']);
+Route::post('/auth/refresh', [Controllers\AuthController::class, 'refresh']);
+Route::post('/user', [Controllers\AuthController::class, 'create']);
+
+Route::get('/user', [Controllers\UserController::class, 'read']);
+Route::put('/user', [Controllers\UserController::class, 'update']);
+Route::get('/user/favorites', [Controllers\UserController::class, 'getFavorites']);
+Route::post('/user/favorite', [Controllers\UserController::class, 'addFavorite']);
+Route::get('/user/appoinments', [Controllers\UserController::class, 'getAppoinments']);
+
+Route::get('/barbers', [Controllers\BarberController::class, 'list']);
+Route::get('/barber/{id}', [Controllers\BarberController::class, 'one']);
+Route::post('/barber/{id}/appoiment', [Controllers\BarberController::class, 'setAppoinment']);
+
+Route::get('/search', [Controllers\BarberController::class, 'search']);
