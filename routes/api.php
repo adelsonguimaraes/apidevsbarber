@@ -20,6 +20,10 @@ Route::get('/ping', function () {
     return ['pong'=>true];
 });
 
+Route::get('/401', [Controllers\AuthController::class, 'unauthorized'])->name('login');
+
+Route::get('/random', [Controllers\BarberController::class, 'createRandom']);
+
 Route::post('/auth/login', [Controllers\AuthController::class, 'login']);
 Route::post('/auth/logout', [Controllers\AuthController::class, 'logout']);
 Route::post('/auth/refresh', [Controllers\AuthController::class, 'refresh']);

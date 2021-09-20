@@ -36,10 +36,10 @@ class CreateAllTables extends Migration
             $table->string('name');
             $table->string('avatar')->default('default.png');
             $table->float('stars')->defaut(0);
-            $table->string('latitudee')->nullable();
+            $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
         });
-        Schema::create('barbersphotos', function (Blueprint $table) {
+        Schema::create('barberphotos', function (Blueprint $table) {
             $table->id();
             $table->integer('id_barber');
             $table->string('url');
