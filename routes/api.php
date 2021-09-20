@@ -37,6 +37,6 @@ Route::get('/user/appoinments', [Controllers\UserController::class, 'getAppoinme
 
 Route::get('/barbers', [Controllers\BarberController::class, 'list']);
 Route::get('/barber/{id}', [Controllers\BarberController::class, 'one']);
-Route::post('/barber/{id}/appoiment', [Controllers\BarberController::class, 'setAppoinment']);
+Route::post('/barber/{id}/appoiment', [Controllers\BarberController::class, 'setAppointment']);
 
 Route::get('/search', [Controllers\BarberController::class, 'search']);
