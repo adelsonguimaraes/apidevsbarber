@@ -20,12 +20,12 @@ class CreateAllTables extends Migration
             $table->string('email')->unique();
             $table->string('password');
         });
-        Schema::create('usersfavorites', function (Blueprint $table) {
+        Schema::create('userfavorites', function (Blueprint $table) {
             $table->id();
             $table->integer('id_user');
             $table->integer('id_barber');
         });
-        Schema::create('usersappointments', function (Blueprint $table) {
+        Schema::create('userappointments', function (Blueprint $table) {
             $table->id();
             $table->integer('id_user');
             $table->integer('id_barber');
