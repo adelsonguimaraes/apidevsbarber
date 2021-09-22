@@ -278,6 +278,7 @@ class BarberController extends Controller
 
         // 2 verificar se a data é real
         $appDate = $year.'-'.$month.'-'.$day.' '.$hour.':00:00';
+
         if (strtotime($appDate)<=0) {
             $array['error'] = "Data inválida!";
             return $array;
@@ -307,7 +308,7 @@ class BarberController extends Controller
         // 4.2 verificar se o barbeiro atende nesta hora
         $hours = explode(',', $avail['hours']);
         if(!in_array($hour.':00', $hours)) {
-            $array['error'] = '';
+            $array['error'] = "Barbeiro não atende neste horário!";
             return $array;
         }
 
@@ -319,6 +320,29 @@ class BarberController extends Controller
         $ua->ap_datetime = $appDate;
         $ua->save();
 
+        return $array;
+    }
+
+    public function search (Request $request) {
+        $array = ['error' => '', 'list' => []];
+
+        $q = $request->input('q');
+
+        if (!$q) {
+            $array['error'] = "Digite algo para buscar!";
+            return $array;
+        }
+
+        $barbers = Barber::select()
+        ->where('name', 'LIKE', '%'.$q.'%')
+        ->get();
+
+        foreach($barbers as $bkey => $barber) {
+            $barbers[$bkey]['avatar'] = url('media/avatars/'.$barbers[$bkey]['avatar']);
+        }
+
+        $array['list'] = $barbers;
+        
         return $array;
     }
 }

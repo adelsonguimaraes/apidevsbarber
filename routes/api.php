@@ -31,12 +31,13 @@ Route::post('/user', [Controllers\AuthController::class, 'create']);
 
 Route::get('/user', [Controllers\UserController::class, 'read']);
 Route::put('/user', [Controllers\UserController::class, 'update']);
+Route::post('/user/avatar', [Controllers\UserController::class, 'updateAvatar']);
 Route::get('/user/favorites', [Controllers\UserController::class, 'getFavorites']);
-Route::post('/user/favorite', [Controllers\UserController::class, 'addFavorite']);
-Route::get('/user/appoinments', [Controllers\UserController::class, 'getAppoinments']);
+Route::post('/user/favorite', [Controllers\UserController::class, 'toggleFavorite']);
+Route::get('/user/appointments', [Controllers\UserController::class, 'getAppointments']);
 
 Route::get('/barbers', [Controllers\BarberController::class, 'list']);
 Route::get('/barber/{id}', [Controllers\BarberController::class, 'one']);
-Route::post('/barber/{id}/appoiment', [Controllers\BarberController::class, 'setAppointment']);
+Route::post('/barber/{id}/appointment', [Controllers\BarberController::class, 'setAppointment']);
 
 Route::get('/search', [Controllers\BarberController::class, 'search']);
