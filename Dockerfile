@@ -30,15 +30,8 @@ RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # criando usuario do grupo www-data e adicionando permissões as pastas
-# RUN addgroup www-data www-data \
-#     && mkdir -p /var/www .compose \
-#     && mkdir -p /var/www/bootstrap/cache \
-#     && mkdir -p /var/www/storage \
-#     && chown -R www-data:www-data \
-#     /var/www/storage \
-#     /var/www/bootstrap/cache
-
-RUN chmod -R 777 /var/www
+RUN addgroup www-data www-data \
+&& chown -R www-data:www-data /var/www
 
 EXPOSE 9000
 
